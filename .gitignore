@@ -1,0 +1,17 @@
+# Dépendance Node 
+node_modules/
+
+# Fichiers générés lors du build 
+dist/
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# Dépendances PHP 
+/vendor/
+
+# Fichiers système 
+.DS_Store
+Thumbs.db
