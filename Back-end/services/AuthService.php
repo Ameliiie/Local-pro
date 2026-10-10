@@ -40,8 +40,8 @@ class AuthService
             return false;
         } 
 
-       if (password_verify($motDePasse, $compte['mot_de_passe'])) {
-            return $compte;
+       if (password_verify($motDePasse, $compte['mot_de_passe'])) { 
+       return $compte;
        }
 
        return false;
