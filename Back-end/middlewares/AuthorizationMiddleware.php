@@ -43,8 +43,8 @@ class AuthorizationMiddleware
             return false;
         }
 
-        if ($utilisateur['id_utilisateur'] !== $idUtilisateur) {
-            return false;
+        if ((int) $utilisateur['id_utilisateur'] !== (int) $idUtilisateur) {
+        return false;
         }
 
         return true;
@@ -79,5 +79,26 @@ class AuthorizationMiddleware
         if (!$this->isEntrepriseOwner($idEntreprise)){
             return false;
         }
-    }    
+        return true;
+    }  
+    
+    // Récupère le professionnel connecté
+    public function getProfessionnelConnecte()
+    {
+        if (!isset($_SESSION['id_compte'])) {
+            return false;
+        }
+
+        $idCompte = $_SESSION['id_compte'];
+
+        $professionnel = $this->professionnelRepository
+            ->getByIdCompte($idCompte);
+
+        if (!$professionnel) {
+            return false;
+        }
+
+        return $professionnel;
+    }
+    
 }
