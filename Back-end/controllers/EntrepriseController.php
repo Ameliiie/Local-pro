@@ -33,4 +33,16 @@ class EntrepriseController
             $donnees
         );
     }
+    // Créer une entreprise
+    public function creerEntreprise($donnees){
+        if (!$this->authorizationMiddleware->authorize('professionnel')){
+        return false;
+        }
+        $professionnel = $this->authorizationMiddleware->getProfessionnelConnecte();
+        if(!$professionnel){
+        return false;
+        }
+        return $this->entrepriseService->createEntreprise($donnees,$professionnel['id_professionnel']
+     );
+    }
 }
